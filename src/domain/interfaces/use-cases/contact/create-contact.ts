@@ -1,5 +1,5 @@
 import { Contact } from "../../../entities/contact";
 
-export interface CreateContactUseCase {
+export interface ICreateContact {
     execute(contact: Contact): Promise<boolean>;
 }

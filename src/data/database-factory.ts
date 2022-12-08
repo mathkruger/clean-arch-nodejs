@@ -1,5 +1,5 @@
 import config from "../config";
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 import { DatabaseWrapper } from "./interfaces/data-sources/database-wrapper";
 import { MongoDBContactDataSource } from "./data-sources/mongodb/mongodb-contact-data-source";
 
@@ -22,6 +22,9 @@ export class DatabaseFactory {
     
         const contactDatabase: DatabaseWrapper = {
             find: (query) => db.collection("contacts").find(query).toArray(),
+            findById: (id: string) => db.collection("contacts").findOne({
+                "_id": new ObjectId(id)
+            }),
             insertOne: (doc) => db.collection("contacts").insertOne(doc)
         };
     

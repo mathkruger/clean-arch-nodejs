@@ -9,6 +9,11 @@ export class ContactRepository implements IContactRepository {
         this.contactDataSource = contactDataSource
     }
 
+    async getContact(id: string): Promise<Contact> {
+        const result = await this.contactDataSource.get(id);
+        return result;
+    }
+
     async createContact(contact: Contact): Promise<boolean> {
         const result = await this.contactDataSource.create(contact);
         return result;

@@ -7,6 +7,7 @@ import { DatabaseFactory } from './data/database-factory';
 import { ContactRepository } from './domain/repositories/contact-repository';
 import { CreateContact } from './domain/use-cases/contact/create-contact';
 import { GetAllContacts } from './domain/use-cases/contact/get-all-contacts';
+import { GetContact } from './domain/use-cases/contact/get-contact';
 
 (async () => {
     const dataSource = await DatabaseFactory.get(config.useDatabase);
@@ -20,7 +21,8 @@ import { GetAllContacts } from './domain/use-cases/contact/get-all-contacts';
 
     const contactMiddleWare = ContactsRouter(
         new GetAllContacts(repository),
-        new CreateContact(repository)
+        new CreateContact(repository),
+        new GetContact(repository)
     );
 
     server.use("/contact", contactMiddleWare);

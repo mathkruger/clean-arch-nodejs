@@ -9,6 +9,16 @@ export class MongoDBContactDataSource implements ContactDataSource {
         this.database = database;
     }
 
+    async get(id: string): Promise<Contact> {
+        const result = await this.database.findById(id);
+        return <Contact>{
+            id: result._id,
+            firstName: result.firstName,
+            surname: result.surname,
+            email: result.email
+        };
+    }
+
     async create(contact: Contact): Promise<boolean> {
         const result = await this.database.insertOne(contact);
         return result !== null;
