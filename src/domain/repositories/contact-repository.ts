@@ -1,11 +1,11 @@
-import { ContactDataSource } from "../../data/interfaces/data-sources/contact-data-source";
+import { IContactDataSource } from "../../data/interfaces/data-sources/contact-data-source";
 import { Contact } from "../entities/contact";
 import { IContactRepository } from "../interfaces/repositories/contact-repository";
 
 export class ContactRepository implements IContactRepository {
-    contactDataSource: ContactDataSource;
+    contactDataSource: IContactDataSource;
     
-    constructor(contactDataSource: ContactDataSource) {
+    constructor(contactDataSource: IContactDataSource) {
         this.contactDataSource = contactDataSource
     }
 

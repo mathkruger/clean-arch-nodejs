@@ -1,6 +1,6 @@
 import { Contact } from "../../../domain/entities/contact";
 
-export interface ContactDataSource {
+export interface IContactDataSource {
     create(contact: Contact): Promise<boolean>;
     getAll(): Promise<Contact[]>;
     get(id: string): Promise<Contact>;
